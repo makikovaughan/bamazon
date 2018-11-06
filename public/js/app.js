@@ -55,7 +55,7 @@ $(function () {
             }
         });
 
-
+        $(".quantity").val("");
 
 
         $.ajax({
@@ -78,5 +78,7 @@ $(function () {
     displayPage();
 
     $("#orderButton").on("click", sendOrder);
+
+    $(".dropdown-item").on("click", changeScreen);
 
 });
