@@ -40,6 +40,7 @@
                                         Department
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" id="v-dropdown-all-tab" href="v-dropdown-all">All</a>
                                         <a class="dropdown-item" href="#">Electronics</a>
                                         <a class="dropdown-item" href="#">Movies</a>
                                         <a class="dropdown-item" href="#">Books</a>
@@ -58,10 +59,69 @@
                 </header>
             </div>
         </div>
-        <div class="row" id="product-item">
+        <div class="row mt-5">
+            <div class="col-12">
+                <h1>Shopping Online</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="tab-content" id="v-pills-tabContent">
+                    <div class="tab-pane fade show active" id="v-dropdown-all" role="tabpanel" aria-labelledby="v-dropdown-all-tab">
+                        <table class="table mt-5">
+                            <thead>
+                                <tr>
+                                    <th width="10%"></th>
+                                    <th width="20%">Department</th>
+                                    <th width="40%">Item</th>
+                                    <th width="20%">Qty</th>
+                                    <th width="10%">Price</th>
+                                </tr>
+                            </thead>
+                            <tbody id="order">
+
+                            </tbody>
+                            <tfoot>
+                                <tr class="bg-light">
+                                    <th></th>
+                                    <th>Total Price:</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th id="totalPrice"></th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <div class="row justify-content-end">
+                            <div class="col-3">
+                                <form>
+                                    <input class="btn btn-outline-success" id="orderButton" type="submit" value="Place Order">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
 
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-success">Order Status</h5>
+                        <button type="button" class="close btn-success" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p id="order-status" class="text-success text-center"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-success" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
 
@@ -75,6 +135,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
 
+    <!--My JS-->
+    <script src="./js/orderDisplay.js"></script>
     <script src="./js/app.js"></script>
 
 </body>

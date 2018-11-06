@@ -4,10 +4,7 @@ module.exports = function(sequelize, DataTypes) {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-            isAlphanumeric: true,
-            notNull: true,
-            notEmpty: true,
-            len: [1,20]
+            len: [1,50]
         }
       },
       department_name: {
@@ -15,8 +12,6 @@ module.exports = function(sequelize, DataTypes) {
         allowNull: false,
         VALIDATE: {
             isAlpha: true,
-            notNull: true,
-            notEmpty: true,
             len: [1,20]
         }
       },
@@ -25,7 +20,6 @@ module.exports = function(sequelize, DataTypes) {
         allowNull: false,
         validate: {
             isDecimal: true,
-            notNull: true
         }
       },
       stock_quantity: {
@@ -33,7 +27,6 @@ module.exports = function(sequelize, DataTypes) {
         allowNull: false,
         validate: {
             isNumeric: true,
-            notNull: true
         }
       }
     });

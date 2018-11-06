@@ -1,17 +1,29 @@
 // Requiring our models
 const db = require('../models');
 
-module.exports = function(app) {
+module.exports = function (app) {
 
-  app.get('/api/product', function(req, res) {
+  app.get('/api/products', function (req, res) {
 
-    console.log(db);
     db.Product.findAll({
-    }).then(function(dbProduct) {
+    }).then(function (dbProduct) {
       res.json(dbProduct);
-    }).catch(function(error) {
+    }).catch(function (error) {
       res.json({ error: error });
     });
+  });
+
+  app.put('/api/products', function (req, res) {
+    const orderItems = req.body.bulkOrder;
+    let orderResult = [];
+
+      require('./api-order.js')(orderItems, res, function (results) {
+        orderResult = results;
+        console.log("result", results);
+        res.json(orderResult);
+      });
+    
+
   });
 
 }
