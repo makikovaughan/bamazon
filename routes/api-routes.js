@@ -17,10 +17,12 @@ module.exports = function (app) {
     const orderItems = req.body.bulkOrder;
     let orderResult = [];
 
-      require('./api-order.js')(orderItems, res, function (results) {
+      require('./api-order.js')(orderItems, orderResult, function (results) {
         orderResult = results;
-        console.log("result", results);
-        res.json(orderResult);
+        console.log("result", results, "order", orderItems.length);
+        if(orderItems.length === results.length){
+          res.json(orderResult);
+        }
       });
     
 
