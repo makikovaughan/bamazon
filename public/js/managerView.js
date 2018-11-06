@@ -32,7 +32,7 @@ const renderCustomerView = function(){
 const changeScreen = function () {
 
     //Make the screen viewable based on what is clicked on the left screen
-    if (this.text === "Manager") {
+    if (this.text === "Manager" || this.text === "View for Sale") {
 
         //Displays the manager view
         renderManagerView();
