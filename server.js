@@ -15,6 +15,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Routes
 require('./routes/api-routes.js')(app);
+require('./routes/api-sale-routes.js')(app);
 require('./routes/html-routes.js')(app);
 
 const db = require('./models');

@@ -1,8 +1,6 @@
-const displaySale = function(productItems){
+const displaySale = function(productItems, displayTag){
 
-    //Creating a <tbody>
-    const tbody = $("<tbody>");
-
+    displayTag.empty();
 
 
     productItems.forEach(e => {
@@ -10,48 +8,12 @@ const displaySale = function(productItems){
         //Creating <tr>
         const tr = $("<tr>");
 
-
         //Creating <td> containing a product picture
         const tdPicture = $("<td>");
 
-        const orderImage = $("<img>").addClass("img-fluid")
+        const orderImage = $("<img>").addClass("img-fluid");
 
-        switch (e.product_name) {
-
-            case "Movado Mens Bold Watch":
-                orderImage.attr("src", "../images/movadoMensWatch.jpg");
-                break;
-            case "Coach Womens Tristen Signature Stainless Bracelet Glitz Watch":
-                orderImage.attr("src", "../images/coachWatch.jpg");
-                break;
-            case "Movado Womens Bold Watch":
-                orderImage.attr("src", "../images/movadoWomenWatch.jpg");
-                break;
-            case "R2D2 with Antlers Collectible Figure":
-                orderImage.attr("src", "../images/R2D2.jpg");
-                break;
-            case "Mamma Mia! Here We Go Again":
-                orderImage.attr("src", "../images/mamamia.jpg");
-                break;
-            case "The Lord of the Rings: The Motion Picture Trilogy":
-                orderImage.attr("src", "../images/lord.jpg");
-                break;
-            case "The Lion, the Witch, and the Wardrobe: The Chronicles of Narnia":
-                orderImage.attr("src", "../images/narnia.jpg");
-                break;
-            case "Harry Potter Paperback Box Set (Books 1-7)":
-                orderImage.attr("src", "../images/harry.jpg");
-                break;
-            case "MacBook Pro":
-                orderImage.attr("src", "../images/macbook.jpg");
-                break;
-            case "iPad Pro":
-                orderImage.attr("src", "../images/ipad.jpg");
-                break;
-
-        }
-
-        const inputId = e.product_name.split(" ").join("");
+        orderImage.attr("src", e.picture);
 
         //Create <td> for product name
         const tdItem = $("<td>").addClass("product-name").text(e.product_name);
@@ -76,7 +38,7 @@ const displaySale = function(productItems){
         tr.append(tdPrice);
 
         //Append to <tbody>
-        $("#sale-item").append(tr);
+        displayTag.append(tr);
 
     });
 
@@ -90,13 +52,42 @@ const renderList = function(){
         url: "/api/products"
     }).then(function (response) {
         const productItems = response;
-        displaySale(productItems);
+        const sales = $("#sale-item");
+        displaySale(productItems, sales);
     }).catch(function (err) {
         console.log(err);
     });
 
 }
 
+//Get the low inventory
+const getLowInventory = function(){
+
+    $.ajax({
+        method: "GET",
+        url: "/api/sales"
+    }).then(function (data) {
+        const productItems = data;
+        console.log("ProductItems", data);
+        const lowInventory = $("#lowInventory-item");
+        displaySale(productItems, lowInventory);
+    }).catch(function (err) {
+        console.log(err);
+    });
+}
+
+//Get the inventory page
+const displayPage = function () {
+    $.ajax({
+        method: "GET",
+        url: "/api/products"
+    }).then(function (response) {
+        const productItem = response;
+        orderDisplay(productItem);
+    }).catch(function (err) {
+        console.log(err);
+    });
+}
 
 const renderManagerView = function(){
 
@@ -105,14 +96,40 @@ const renderManagerView = function(){
     const statusActive = "active";
     
     //Make add screen viewable
-    $("#v-dropdown-manager").addClass(statusActive);
-    $("#v-dropdown-manager").addClass(statusShow);
+    $("#sales").addClass(statusActive);
+    $("#sales").addClass(statusShow);
 
     //Make the rest of screen faded(not viewable)
-    $("#v-dropdown-all").removeClass(statusShow);
-    $("#v-dropdown-all").removeClass(statusActive);
+    $("#home").removeClass(statusShow);
+    $("#home").removeClass(statusActive);
+    $("#lowInventory").removeClass(statusShow);
+    $("#lowInventory").removeClass(statusActive);
 
     renderList();
+
+
+}
+
+const renderLowInventoryView = function(){
+
+    //Make the view screen viewable
+    const statusShow = "show";
+    const statusActive = "active";
+
+    //Display the low inventory page
+    $("#lowInventory").addClass(statusShow);
+    $("#lowInventory").addClass(statusActive);
+    
+    //Make add screen viewable
+    $("#sales").removeClass(statusActive);
+    $("#sales").removeClass(statusShow);
+
+    //Make the rest of screen faded(not viewable)
+    $("#home").removeClass(statusShow);
+    $("#home").removeClass(statusActive);
+
+    getLowInventory();
+
 }
 
 const renderCustomerView = function(){
@@ -120,26 +137,38 @@ const renderCustomerView = function(){
     //Make the view screen viewable
     const statusShow = "show";
     const statusActive = "active";
+
+    $(".quantity").val("");
     
     //Make add screen viewable
-    $("#v-dropdown-all").addClass(statusShow);
-    $("#v-dropdown-all").addClass(statusActive);
+    $("#home").addClass(statusShow);
+    $("#home").addClass(statusActive);
 
     //Make the rest of screen faded(not viewable)
-    $("#v-dropdown-manager").removeClass(statusActive);
-    $("#v-dropdown-manager").removeClass(statusShow);
+    $("#sales").removeClass(statusActive);
+    $("#sales").removeClass(statusShow);
+    $("#lowInventory").removeClass(statusShow);
+    $("#lowInventory").removeClass(statusActive);
 
+    displayPage();
 
 }
 
 
 const changeScreen = function () {
 
+    console.log(this);
+
     //Make the screen viewable based on what is clicked on the left screen
     if (this.text === "Manager" || this.text === "View for Sale") {
 
         //Displays the manager view
         renderManagerView();
+    }
+    else if(this.text === "View Low Inventory") {
+
+        renderLowInventoryView();
+
     }
     else {
         renderCustomerView();

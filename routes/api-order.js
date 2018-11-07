@@ -43,7 +43,6 @@ const updateDB = function (dbProduct, order, results, cb) {
             product_name: dbProduct.product_name,
             order: "Out of Stock"
         });
-        cb(results);
     }
 }
 

@@ -40,10 +40,11 @@
                                         Access
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" id="v-dropdown-all-tab" href="#v-dropdown-all">Customer</a>
+                                        <a class="dropdown-item" id="v-dropdown-all-tab" href="#home">Customer</a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" id="v-dropdown-manager-main" href="#v-dropdown-manager">Manager</a>
-                                        <a class="dropdown-item" id="v-dropdown-manager-tab" href="#v-dropdown-manager">View for Sale</a>
+                                        <a class="dropdown-item" id="v-dropdown-manager-tab" href="#sale">Manager</a>
+                                        <a class="dropdown-item" id="v-dropdown-sales-tab" href="#sale">View for Sale</a>
+                                        <a class="dropdown-item" id="v-dropdown-lowInventory-tab" href="#lowInventory">View Low Inventory</a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="#">Supervisor</a>
                                     </div>
@@ -57,7 +58,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="tab-content" id="v-pills-tabContent">
-                    <div class="tab-pane fade show active" id="v-dropdown-all" role="tabpanel" aria-labelledby="v-dropdown-all-tab">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="v-dropdown-all-tab">
                         <div class="row mt-5">
                             <div class="col-12">
                                 <h1>Shopping Online</h1>
@@ -94,25 +95,47 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade active" id="v-dropdown-manager" role="tabpanel" aria-labelledby="v-dropdown-manager-tab">
-                            <div class="row mt-5">
-                                    <div class="col-12">
-                                        <h1>View for Sale</h1>
-                                    </div>
-                                </div>
-                                <table class="table mt-5">
-                                    <thead>
-                                        <tr>
-                                            <th width="10%"></th>
-                                            <th width="20%">Department</th>
-                                            <th width="40%">Item</th>
-                                            <th width="20%">Stock</th>
-                                            <th width="10%">Price</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="sale-item">
-        
-                                    </tbody>
+                    <div class="tab-pane fade active" id="sales" role="tabpanel" aria-labelledby="v-dropdown-manager-tab">
+                        <div class="row mt-5">
+                            <div class="col-12">
+                                <h1>View for Sale</h1>
+                            </div>
+                        </div>
+                        <table class="table mt-5">
+                            <thead>
+                                <tr>
+                                    <th width="10%"></th>
+                                    <th width="20%">Department</th>
+                                    <th width="40%">Item</th>
+                                    <th width="20%">Stock</th>
+                                    <th width="10%">Price</th>
+                                </tr>
+                            </thead>
+                            <tbody id="sale-item">
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade active" id="lowInventory" role="tabpanel" aria-labelledby="v-dropdown-lowInventory-tab">
+                        <div class="row mt-5">
+                            <div class="col-12">
+                                <h1>View Low Inventory</h1>
+                            </div>
+                        </div>
+                        <table class="table mt-5">
+                            <thead>
+                                <tr>
+                                    <th width="10%"></th>
+                                    <th width="20%">Department</th>
+                                    <th width="40%">Item</th>
+                                    <th width="20%">Stock</th>
+                                    <th width="10%">Price</th>
+                                </tr>
+                            </thead>
+                            <tbody id="lowInventory-item">
+
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -151,8 +174,8 @@
         crossorigin="anonymous"></script>
 
     <!--My JS-->
-    <script src="./js/orderDisplay.js"></script>
     <script src="./js/managerView.js"></script>
+    <script src="./js/orderDisplay.js"></script>
     <script src="./js/app.js"></script>
 
 </body>

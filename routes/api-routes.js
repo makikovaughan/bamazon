@@ -1,5 +1,6 @@
 // Requiring our models
 const db = require('../models');
+const placeOrder = require('./api-order.js');
 
 module.exports = function (app) {
 
@@ -14,14 +15,13 @@ module.exports = function (app) {
   });
 
   app.put('/api/products', function (req, res) {
+    console.log(req.body.bulkOrder);
     const orderItems = req.body.bulkOrder;
     let orderResult = [];
 
-      require('./api-order.js')(orderItems, orderResult, function (results) {
-        orderResult = results;
-        console.log("result", results, "order", orderItems.length);
+      placeOrder(orderItems, orderResult, function (results) {        
         if(orderItems.length === results.length){
-          res.json(orderResult);
+          res.json(results);
         }
       });
     
