@@ -1,4 +1,4 @@
-const displaySale = function(productItems, displayTag){
+const displaySale = function (productItems, displayTag) {
 
     displayTag.empty();
 
@@ -21,8 +21,10 @@ const displaySale = function(productItems, displayTag){
         //Create <td> for department name
         const tdDepartment = $("<td>").addClass("department-name").text(e.department_name);
 
+        const inputStock = $("<input>").attr("type", "text").attr("id", "input-stock").val(e.stock_quantity);
         //Create <td> for Quantity
-        const tdStock= $("<td>").addClass("stock").text(e.stock_quantity);
+        const tdStock = $("<td>").addClass("stock").text(e.stock_quantity);
+
 
         //Add image to <td>
         tdPicture.append(orderImage);
@@ -34,7 +36,15 @@ const displaySale = function(productItems, displayTag){
         tr.append(tdPicture);
         tr.append(tdDepartment);
         tr.append(tdItem);
-        tr.append(tdStock);
+
+        //If the add inventory, the stock is input tag
+        if (displayTag[0].id === "addStock") {
+            tr.append(inputStock);
+        }
+        //otherwise, it just displays it
+        else {
+            tr.append(tdStock);
+        }
         tr.append(tdPrice);
 
         //Append to <tbody>
@@ -45,7 +55,7 @@ const displaySale = function(productItems, displayTag){
 
 }
 
-const renderList = function(){
+const renderList = function () {
 
     $.ajax({
         method: "GET",
@@ -61,7 +71,7 @@ const renderList = function(){
 }
 
 //Get the low inventory
-const getLowInventory = function(){
+const getLowInventory = function () {
 
     $.ajax({
         method: "GET",
@@ -74,6 +84,21 @@ const getLowInventory = function(){
     }).catch(function (err) {
         console.log(err);
     });
+}
+
+const addInventory = function () {
+
+    $.ajax({
+        method: "GET",
+        url: "/api/products"
+    }).then(function (data) {
+        const productItems = data;
+        const addInventory = $("#addStock");
+        displaySale(productItems, addInventory);
+    }).catch(function (err) {
+        console.log(err);
+    });
+
 }
 
 //Get the inventory page
@@ -89,12 +114,12 @@ const displayPage = function () {
     });
 }
 
-const renderManagerView = function(){
+const renderManagerView = function () {
 
     //Make the view screen viewable
     const statusShow = "show";
     const statusActive = "active";
-    
+
     //Make add screen viewable
     $("#sales").addClass(statusActive);
     $("#sales").addClass(statusShow);
@@ -104,13 +129,15 @@ const renderManagerView = function(){
     $("#home").removeClass(statusActive);
     $("#lowInventory").removeClass(statusShow);
     $("#lowInventory").removeClass(statusActive);
+    $("#addInventory").removeClass(statusShow);
+    $("#addInventory").removeClass(statusActive);
 
     renderList();
 
 
 }
 
-const renderLowInventoryView = function(){
+const renderLowInventoryView = function () {
 
     //Make the view screen viewable
     const statusShow = "show";
@@ -119,27 +146,49 @@ const renderLowInventoryView = function(){
     //Display the low inventory page
     $("#lowInventory").addClass(statusShow);
     $("#lowInventory").addClass(statusActive);
-    
-    //Make add screen viewable
-    $("#sales").removeClass(statusActive);
-    $("#sales").removeClass(statusShow);
+
 
     //Make the rest of screen faded(not viewable)
     $("#home").removeClass(statusShow);
     $("#home").removeClass(statusActive);
+    $("#sales").removeClass(statusActive);
+    $("#sales").removeClass(statusShow);
+    $("#addInventory").removeClass(statusShow);
+    $("#addInventory").removeClass(statusActive);
 
     getLowInventory();
 
 }
 
-const renderCustomerView = function(){
+const renderAddInventoryView = function () {
+
+    //Make the view screen viewable
+    const statusShow = "show";
+    const statusActive = "active";
+
+    //Display the low inventory page
+    $("#addInventory").addClass(statusShow);
+    $("#addInventory").addClass(statusActive);
+
+    //Make other screens not viewable
+    $("#sales").removeClass(statusActive);
+    $("#sales").removeClass(statusShow);
+    $("#home").removeClass(statusShow);
+    $("#home").removeClass(statusActive);
+    $("#lowInventory").removeClass(statusShow);
+    $("#lowInventory").removeClass(statusActive);
+
+    addInventory();
+}
+
+const renderCustomerView = function () {
 
     //Make the view screen viewable
     const statusShow = "show";
     const statusActive = "active";
 
     $(".quantity").val("");
-    
+
     //Make add screen viewable
     $("#home").addClass(statusShow);
     $("#home").addClass(statusActive);
@@ -149,6 +198,8 @@ const renderCustomerView = function(){
     $("#sales").removeClass(statusShow);
     $("#lowInventory").removeClass(statusShow);
     $("#lowInventory").removeClass(statusActive);
+    $("#addInventory").removeClass(statusShow);
+    $("#addInventory").removeClass(statusActive);
 
     displayPage();
 
@@ -157,18 +208,19 @@ const renderCustomerView = function(){
 
 const changeScreen = function () {
 
-    console.log(this);
-
     //Make the screen viewable based on what is clicked on the left screen
     if (this.text === "Manager" || this.text === "View for Sale") {
 
         //Displays the manager view
         renderManagerView();
     }
-    else if(this.text === "View Low Inventory") {
+    else if (this.text === "View Low Inventory") {
 
         renderLowInventoryView();
 
+    }
+    else if (this.text === "Add to Inventory") {
+        renderAddInventoryView();
     }
     else {
         renderCustomerView();

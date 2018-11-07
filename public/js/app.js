@@ -89,7 +89,10 @@ $(function () {
     //Order button
     $("#orderButton").on("click", sendOrder);
 
-    //Change the view
+    //Add order button. addOrder is in addOrder.js
+    $("#addButton").on("click", addOrder);
+
+    //Change the view(inside managerView.js)
     $(".dropdown-item").on("click", changeScreen);
 
 });

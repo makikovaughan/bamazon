@@ -45,6 +45,7 @@
                                         <a class="dropdown-item" id="v-dropdown-manager-tab" href="#sale">Manager</a>
                                         <a class="dropdown-item" id="v-dropdown-sales-tab" href="#sale">View for Sale</a>
                                         <a class="dropdown-item" id="v-dropdown-lowInventory-tab" href="#lowInventory">View Low Inventory</a>
+                                        <a class="dropdown-item" id="v-dropdown-addInventory-tab" href="#addInventory">Add to Inventory</a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="#">Supervisor</a>
                                     </div>
@@ -137,6 +138,35 @@
                             </tbody>
                         </table>
                     </div>
+                    <div class="tab-pane fade active" id="addInventory" role="tabpanel" aria-labelledby="v-dropdown-addInventory-tab">
+                        <div class="row mt-5">
+                            <div class="col-12">
+                                <h1>Add Inventory</h1>
+                            </div>
+                        </div>
+                        <table class="table mt-5">
+                            <thead>
+                                <tr>
+                                    <th width="10%"></th>
+                                    <th width="20%">Department</th>
+                                    <th width="40%">Item</th>
+                                    <th width="20%">Stock</th>
+                                    <th width="10%">Price</th>
+                                </tr>
+                            </thead>
+                            <tbody id="addStock">
+
+                            </tbody>
+                            <tfoot></tfoot>
+                        </table>
+                        <div class="row justify-content-end">
+                            <div class="col-3">
+                                <form>
+                                    <input class="btn btn-outline-success" id="addButton" type="submit" value="Add Stock">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -174,6 +204,7 @@
         crossorigin="anonymous"></script>
 
     <!--My JS-->
+    <script src="./js/addOrder.js"></script>
     <script src="./js/managerView.js"></script>
     <script src="./js/orderDisplay.js"></script>
     <script src="./js/app.js"></script>
