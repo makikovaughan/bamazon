@@ -1,13 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-    const Product = sequelize.define('Department', {
-        department_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            validate: {
-                isNumeric: true,
-                len:[1, 5]
-            }
-        },
+    const Department = sequelize.define('Department', {
         department_name: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -24,6 +16,14 @@ module.exports = function (sequelize, DataTypes) {
             }
         }
     });
+
+    //Department is parent, and Product is child
+    Department.associate = function(models) {
+    
+        Department.hasMany(models.Product, {
+          onDelete: 'cascade'
+        });
+      };
 
     return Department;
 }

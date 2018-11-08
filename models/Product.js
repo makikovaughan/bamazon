@@ -35,8 +35,26 @@ module.exports = function (sequelize, DataTypes) {
             VALIDATE: {
                 len: [1, 100]
             }
+        },
+        product_sales: {
+            type: DataTypes.DECIMAL(10,2),
+            allowNull: false,
+            VALIDATE: {
+                isDecimal: true
+            }
         }
     });
+
+    Product.associate = function(models) {
+    
+       //Product is child and Department is parent
+        Product.belongsTo(models.Department, {
+          foreignKey: {
+            allowNull: false
+          },
+          onDelete: 'cascade'
+        });
+      };
 
     return Product;
 }
