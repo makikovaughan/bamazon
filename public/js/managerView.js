@@ -25,8 +25,8 @@ const displaySale = function (productItems, displayTag) {
         const inputId = e.product_name.split(" ").join("");
 
         //Create the input text for the stock. Placeholder is the current stock value
-        const inputStock = $("<input>").addClass("stock").attr("type", "text").attr("id", inputId).attr("placeholder", e.stock_quantity);
-        
+        const inputStock = $("<input>").addClass("stock mt-3").attr("type", "text").attr("id", inputId).attr("placeholder", e.stock_quantity);
+
         //Create <td> for Quantity
         const tdStock = $("<td>").addClass("stock").text(e.stock_quantity);
 
@@ -136,6 +136,8 @@ const renderManagerView = function () {
     $("#lowInventory").removeClass(statusActive);
     $("#addInventory").removeClass(statusShow);
     $("#addInventory").removeClass(statusActive);
+    $("#addNewOrder").removeClass(statusShow);
+    $("#addNewOrder").removeClass(statusActive);
 
     renderList();
 
@@ -160,6 +162,8 @@ const renderLowInventoryView = function () {
     $("#sales").removeClass(statusShow);
     $("#addInventory").removeClass(statusShow);
     $("#addInventory").removeClass(statusActive);
+    $("#addNewOrder").removeClass(statusShow);
+    $("#addNewOrder").removeClass(statusActive);
 
     getLowInventory();
 
@@ -182,8 +186,32 @@ const renderAddInventoryView = function () {
     $("#home").removeClass(statusActive);
     $("#lowInventory").removeClass(statusShow);
     $("#lowInventory").removeClass(statusActive);
+    $("#addNewOrder").removeClass(statusShow);
+    $("#addNewOrder").removeClass(statusActive);
 
     addInventory();
+}
+
+const renderAddNewOrder = function () {
+
+    //Make the view screen viewable
+    const statusShow = "show";
+    const statusActive = "active";
+
+    //Display the low inventory page
+    $("#addNewOrder").addClass(statusShow);
+    $("#addNewOrder").addClass(statusActive);
+
+    //Make other screens not viewable
+    $("#sales").removeClass(statusActive);
+    $("#sales").removeClass(statusShow);
+    $("#home").removeClass(statusShow);
+    $("#home").removeClass(statusActive);
+    $("#lowInventory").removeClass(statusShow);
+    $("#lowInventory").removeClass(statusActive);
+    $("#addInventory").removeClass(statusShow);
+    $("#addInventory").removeClass(statusActive);
+
 }
 
 const renderCustomerView = function () {
@@ -205,6 +233,8 @@ const renderCustomerView = function () {
     $("#lowInventory").removeClass(statusActive);
     $("#addInventory").removeClass(statusShow);
     $("#addInventory").removeClass(statusActive);
+    $("#addNewOrder").removeClass(statusShow);
+    $("#addNewOrder").removeClass(statusActive);
 
     displayPage();
 
@@ -226,6 +256,9 @@ const changeScreen = function () {
     }
     else if (this.text === "Add to Inventory") {
         renderAddInventoryView();
+    }
+    else if (this.text === "Add New Order") {
+        renderAddNewOrder();
     }
     else {
         renderCustomerView();

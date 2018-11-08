@@ -36,4 +36,18 @@ module.exports = function (app) {
 
 
     });
+
+    app.post('/api/sales', function (req, res) {
+
+        //Get the stock information to add
+        const orderItem = req.body;
+
+        db.Product.create(req.body).then(function (rows) {
+            res.json([{ product_name: orderItem.product_name,
+                order: "Processed" }]);
+        }).catch(function (error) {
+            res.json({ error: error })
+        });
+
+    });
 }  

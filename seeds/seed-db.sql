@@ -1,4 +1,4 @@
--- Point to bamazon_db--
+-- Point to bamazon_db for development--
 USE bamazon_db;
 
 -- Insert the 10 initial data to the DB --

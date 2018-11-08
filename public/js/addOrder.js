@@ -4,8 +4,6 @@ const addOrder = function (e) {
     e.preventDefault();
 
     // Get the stock information
-    // const stockTag = $('tbody tr');
-
     const stockTag = document.querySelectorAll('tbody#addStock tr');
 
     const newOrder = [];
@@ -31,24 +29,34 @@ const addOrder = function (e) {
     //Clear the stock to empty
     $(".stock").val("");
 
-    //Send the bulk order to the server
-    $.ajax({
-        method: "PUT",
-        url: "/api/sales",
-        contentType: "application/json",
-        data: JSON.stringify({ bulkOrder: newOrder })
-    }).then(function (response) {
+    if (newOrder.length > 0) {
+        //Send the bulk order to the server
+        $.ajax({
+            method: "PUT",
+            url: "/api/sales",
+            contentType: "application/json",
+            data: JSON.stringify({ bulkOrder: newOrder })
+        }).then(function (response) {
 
-        //The order status
-        const confirm = response;
+            //The order status
+            const confirm = response;
 
-        console.log("Client side", confirm);
+            //Display the order status in modalDisplay.js
+            renderModal(confirm);
 
-        //Display the order status in modalDisplay.js
-        renderModal(confirm);
+        }).catch(function (err) {
+            console.log(err);
+        });
+    }
+    else {
+        const errorMessage = [];
 
-    }).catch(function (err) {
-        console.log(err);
-    });
+        errorMessage.push({
+            product_name: "No Product selected",
+            order: "Please select the product"
+        });
+
+        renderModal(errorMessage);
+    }
 
 }

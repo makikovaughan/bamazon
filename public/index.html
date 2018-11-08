@@ -46,6 +46,7 @@
                                         <a class="dropdown-item" id="v-dropdown-sales-tab" href="#sale">View for Sale</a>
                                         <a class="dropdown-item" id="v-dropdown-lowInventory-tab" href="#lowInventory">View Low Inventory</a>
                                         <a class="dropdown-item" id="v-dropdown-addInventory-tab" href="#addInventory">Add to Inventory</a>
+                                        <a class="dropdown-item" id="v-dropdown-addNewOrder-tab" href="#addNewOrder">Add New Order</a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="#">Supervisor</a>
                                     </div>
@@ -161,10 +162,58 @@
                             </tbody>
                             <tfoot></tfoot>
                         </table>
+
                         <div class="row justify-content-end">
                             <div class="col-3">
                                 <form>
                                     <input class="btn btn-outline-success" id="addButton" type="submit" value="Add Stock">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade active" id="addNewOrder" role="tabpanel" aria-labelledby="v-dropdown-addNewOrder-tab">
+                        <div class="row mt-5">
+                            <div class="col-12">
+                                <h1>Add New Product</h1><br>
+                                <p>Please type a new product information</p>
+                            </div>
+                        </div>
+                        <table class="table mt-5">
+                            <thead>
+                                <tr>
+                                    <th width="20%">Picture Location</th>
+                                    <th width="20%">Department</th>
+                                    <th width="30%">Item</th>
+                                    <th width="20%">Stock</th>
+                                    <th width="10%">Price</th>
+                                </tr>
+                            </thead>
+                            <tbody id="addOrder">
+                                <tr>
+                                    <th>
+                                        <input type="text" id="inputPicture" placeholder="../images/xxxx.jpg" required>
+                                    </th>
+                                    <th>
+                                        <input type="text" id="inputDepartment" placeholder="Fashion" required>
+                                    </th>
+                                    <th>
+                                        <input type="text" id="inputItem" placeholder="Watch" required>
+                                    </th>
+                                    <th>
+                                        <input type="number" id="inputStock" placeholder="10" required>
+                                    </th>
+                                    <th>
+                                        <input type="number" id="inputPrice" placeholder="10.00" required>
+                                    </th>
+                                </tr>
+                            </tbody>
+                            <tfoot></tfoot>
+                        </table>
+
+                        <div class="row justify-content-end">
+                            <div class="col-3">
+                                <form>
+                                    <input class="btn btn-outline-success" id="addProductButton" type="submit" value="Add New Product">
                                 </form>
                             </div>
                         </div>
@@ -207,6 +256,7 @@
 
     <!--My JS-->
     <script src="./js/modalDisplay.js"></script>
+    <script src="./js/addNewOrder.js"></script>
     <script src="./js/addOrder.js"></script>
     <script src="./js/managerView.js"></script>
     <script src="./js/orderDisplay.js"></script>

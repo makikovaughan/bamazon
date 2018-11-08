@@ -19,7 +19,7 @@ $(function () {
         e.preventDefault();
 
         // Get the order information
-        const orderTable = document.querySelectorAll('tbody tr');
+        const orderTable = document.querySelectorAll('tbody#order tr');
 
         const newOrder = [];
 
@@ -44,13 +44,13 @@ $(function () {
         $(".quantity").val("");
 
         //Send the bulk order to the server
-        $.ajax({
-            method: "PUT",
-            url: "/api/products",
-            contentType: "application/json",
-            data: JSON.stringify({ bulkOrder: newOrder })
-        })
-            .then(function (response) {
+        if (newOrder.length > 0) {
+            $.ajax({
+                method: "PUT",
+                url: "/api/products",
+                contentType: "application/json",
+                data: JSON.stringify({ bulkOrder: newOrder })
+            }).then(function (response) {
 
                 //The order status
                 const confirm = response;
@@ -60,6 +60,17 @@ $(function () {
             }).catch(function (err) {
                 console.log(err);
             });
+        }
+        else {
+            const errorMessage = [];
+            
+            errorMessage.push({
+                product_name: "No Product selected",
+                order: "Please select the product"
+            });
+
+            renderModal(errorMessage);
+        }
 
 
     }
@@ -72,6 +83,9 @@ $(function () {
 
     //Add order button. addOrder is in addOrder.js
     $("#addButton").on("click", addOrder);
+
+    //Add a new product in addNewOrder.js
+    $("#addProductButton").on("click", addNewProduct);
 
     //Change the view(inside managerView.js)
     $(".dropdown-item").on("click", changeScreen);
