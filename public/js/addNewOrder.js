@@ -19,23 +19,34 @@ const addNewProduct = function (e) {
     $("#inputPrice").val("");
     $("#inputPicture").val("");
 
-    $.ajax({
-        method: "POST",
-        url: "/api/sales",
-        data: newItem
-    }).then(function (response) {
+    if (newItem.product_name && newItem.department_name && newItem.picture && newItem.stock_quantity && newItem.price) {
+        $.ajax({
+            method: "POST",
+            url: "/api/sales",
+            data: newItem
+        }).then(function (response) {
 
-        //The order status
-        const confirm = response;
+            //The order status
+            const confirm = response;
 
-        console.log("Client side", confirm);
+            console.log("Client side", confirm);
 
-        //Display the order status in modalDisplay.js
-        renderModal(confirm);
+            //Display the order status in modalDisplay.js
+            renderModal(confirm);
 
-    }).catch(function (err) {
-        console.log(err);
-    });
+        }).catch(function (err) {
+            console.log(err);
+        });
+    }
+    else {
+        const errorMessage = [];
 
+        errorMessage.push({
+            product_name: "Not all information was filled",
+            order: "Please input all information"
+        });
+
+        renderModal(errorMessage);
+    }
 
 }
