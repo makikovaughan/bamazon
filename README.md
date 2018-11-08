@@ -60,7 +60,7 @@ ___
 You can type the quantity and press button to order.
 ![customer](./public/images/customer.png)
 
-2. From Access dropdown box, select View for Sale where you can view the current stock information. This is for the manager'
+2. From Access dropdown box, select View for Sale where you can view the current stock information. This is for the manager
 ![viewforSale](./public/images/viewForSale.png)
 
 3. From Access drop down box, select View Low Inventory. This will display the iventories lower than 5.
