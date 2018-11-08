@@ -21,7 +21,12 @@ const displaySale = function (productItems, displayTag) {
         //Create <td> for department name
         const tdDepartment = $("<td>").addClass("department-name").text(e.department_name);
 
-        const inputStock = $("<input>").attr("type", "text").attr("id", "input-stock").val(e.stock_quantity);
+        //Created the <input> ID based on the product name
+        const inputId = e.product_name.split(" ").join("");
+
+        //Create the input text for the stock. Placeholder is the current stock value
+        const inputStock = $("<input>").addClass("stock").attr("type", "text").attr("id", inputId).attr("placeholder", e.stock_quantity);
+        
         //Create <td> for Quantity
         const tdStock = $("<td>").addClass("stock").text(e.stock_quantity);
 
