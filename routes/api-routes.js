@@ -19,7 +19,8 @@ module.exports = function (app) {
     const orderItems = req.body.bulkOrder;
     let orderResult = [];
 
-      placeOrder(orderItems, orderResult, function (results) {        
+      //Located in api-order.js
+      placeOrder(orderItems, orderResult, res, function (results) {        
         if(orderItems.length === results.length){
           res.json(results);
         }

@@ -4,12 +4,10 @@
         //Populate the result
         $("#order-status").text("Order Status").append("<br>");
 
-        console.log(data);
-
         data.forEach(function (orderStatus) {
 
-            const p = $("<p>").addClass("status").text(`Product Name: ${orderStatus.product_name}
-            Order Status: ${orderStatus.order}`);
+            const p = $("<p>").addClass("status").text(`Product Name: ${orderStatus.product_name}`).append("<br>");
+            p.append(`Order Status: ${orderStatus.order}`);
             $("#order-status").append(p);
 
         });

@@ -9,7 +9,8 @@ const addNewProduct = function (e) {
         department_name: $("#inputDepartment").val(),
         stock_quantity: $("#inputStock").val(),
         price: $("#inputPrice").val(),
-        picture: $("#inputPicture").val()
+        picture: $("#inputPicture").val(),
+        product_sales: 0.00
     }
 
     //Clear all values
@@ -19,7 +20,7 @@ const addNewProduct = function (e) {
     $("#inputPrice").val("");
     $("#inputPicture").val("");
 
-    if (newItem.product_name && newItem.department_name && newItem.picture && newItem.stock_quantity && newItem.price) {
+    if (newItem.product_name && newItem.department_name && newItem.picture && newItem.stock_quantity && newItem.price && newItem.product_sales) {
         $.ajax({
             method: "POST",
             url: "/api/sales",

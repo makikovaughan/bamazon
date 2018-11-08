@@ -13,7 +13,7 @@ INSERT INTO Products (product_name, department_name, price, stock_quantity, pict
 INSERT INTO Products (product_name, department_name, price, stock_quantity, picture, product_sales, createdAt, updatedAt) VALUES ('MacBook Pro', 'Electronics', 2400.00, 100, "../images/macbook.jpg", 0.00, NOW(), NOW());
 INSERT INTO Products (product_name, department_name, price, stock_quantity, picture, product_sales, createdAt, updatedAt) VALUES ('iPad Pro', 'Electronics', 799.00, 100, "../images/ipad.jpg", 0.00, NOW(), NOW());
 
---Insert the initial data to the DB for Department --
+-- Insert the initial data to the DB for Department --
 INSERT INTO Departments (department_name, over_head_costs, createdAt, updatedAt) VALUES ('Electronics', 500.00, NOW(), NOW());
 INSERT INTO Departments (department_name, over_head_costs, createdAt, updatedAt) VALUES ('Fashion', 100.00, NOW(), NOW());
 INSERT INTO Departments (department_name, over_head_costs, createdAt, updatedAt) VALUES ('Toys', 100.00, NOW(), NOW());

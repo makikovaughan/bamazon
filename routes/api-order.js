@@ -46,7 +46,7 @@ const updateDB = function (dbProduct, order, results, cb) {
     }
 }
 
-module.exports = function (orderItems, results, cb) {
+module.exports = function (orderItems, results, res, cb) {
 
     orderItems.forEach(order => {
 
@@ -60,7 +60,7 @@ module.exports = function (orderItems, results, cb) {
 
 
         }).catch(function (error) {
-            //res.json({ Error: error });
+            res.json({ Error: error });
         });
     });
 }

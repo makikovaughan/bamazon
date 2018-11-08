@@ -4,6 +4,7 @@ const addStock = require('./api-stock.js');
 
 module.exports = function (app) {
 
+    //Send the products information to the manager
     app.get('/api/sales', function (req, res) {
 
 
@@ -14,7 +15,6 @@ module.exports = function (app) {
                 }
             }
         }).then(function (dbSales) {
-            console.log(dbSales);
             res.json(dbSales);
         }).catch(function (error) {
             console.log(error);
@@ -22,6 +22,7 @@ module.exports = function (app) {
         });
     });
 
+    //Update the stock quantity
     app.put('/api/sales', function (req, res) {
 
         //Get the stock information to add
@@ -37,6 +38,7 @@ module.exports = function (app) {
 
     });
 
+    //Add the stock quantity
     app.post('/api/sales', function (req, res) {
 
         //Get the stock information to add
