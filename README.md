@@ -75,6 +75,13 @@ You can type the quantity and press button to order.
 6. If the order was processed, it will be notified.
 ![orderStatus](./public/images/orderStatus.png)
 
+## Ice Box
+--- 
+Create the Supervisor role:
+* View Product Sales by Department
+   
+* Create New Department
+
 ## Author
 --- 
 Makiko Vaughan(makiko.vaughan@gmail.com)
