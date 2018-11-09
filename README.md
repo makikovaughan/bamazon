@@ -55,7 +55,7 @@ This is a mock online site and display a page based on a role.
 ## *How to Use* 
 ___ 
 
-1. 1. Go to this URL to access this program ([Bamazon Customer Page](https://nameless-taiga-74435.herokuapp.com))
+1. Go to this URL to access this program ([Bamazon Customer Page](https://nameless-taiga-74435.herokuapp.com))
 
 You can type the quantity and press button to order.
 ![customer](./public/images/customer.png)
