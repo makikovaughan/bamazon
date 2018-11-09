@@ -3,6 +3,7 @@ module.exports = function (sequelize, DataTypes) {
         department_name: {
             type: DataTypes.STRING,
             allowNull: false,
+            unique: true,
             VALIDATE: {
                 isAlpha: true,
                 len: [1, 20]

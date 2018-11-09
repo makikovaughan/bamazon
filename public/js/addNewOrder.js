@@ -20,7 +20,7 @@ const addNewProduct = function (e) {
     $("#inputPrice").val("");
     $("#inputPicture").val("");
 
-    if (newItem.product_name && newItem.department_name && newItem.picture && newItem.stock_quantity && newItem.price && newItem.product_sales) {
+    if (newItem.product_name && newItem.department_name && newItem.picture && newItem.stock_quantity && newItem.price) {
         $.ajax({
             method: "POST",
             url: "/api/sales",

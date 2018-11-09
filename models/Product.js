@@ -3,6 +3,7 @@ module.exports = function (sequelize, DataTypes) {
         product_name: {
             type: DataTypes.STRING,
             allowNull: false,
+            unique: true,
             validate: {
                 len: [1, 80]
             }
@@ -32,6 +33,7 @@ module.exports = function (sequelize, DataTypes) {
         picture: {
             type: DataTypes.STRING,
             allowNull: false,
+            unique: true,
             VALIDATE: {
                 len: [1, 100]
             }
